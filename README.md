@@ -1,4 +1,4 @@
-# Smart Move (Server)
+# Smart Move 
 
 Inventory optimization system for retail chains. Handles item management, store inventory, manager roles, and smart transfer suggestions.
 
