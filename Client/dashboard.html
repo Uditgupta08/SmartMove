@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartMove Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="dashboard-body" onload="lucide.createIcons()">
+    <header class="dashboard-header">
+      <div class="logo-section">
+        <img src="walmart-logo.png" alt="Walmart Logo" class="logo-img" />
+        <h1><i data-lucide="layout-dashboard"></i> SmartMove Dashboard</h1>
+      </div>
+      <nav class="nav-buttons">
+        <button onclick="location.href='transfer-requests.html'"><i data-lucide="mail"></i> Transfer Requests</button>
+        <button onclick="location.href='accepted-transfers.html'"><i data-lucide="truck"></i> Accepted Transfers</button>
+        <button onclick="location.href='login.html'"><i data-lucide="log-out"></i> Logout</button>
+      </nav>
+    </header>
+
+    <main class="dashboard-main">
+      <h2>Products Nearing Expiry – Warehouse Manager</h2>
+
+      <div class="filters">
+        <label for="expiryFilter">Expiry Within:</label>
+        <select id="expiryFilter">
+          <option value="all">All</option>
+          <option value="3">≤ 3 Days</option>
+          <option value="7">≤ 7 Days</option>
+        </select>
+      </div>
+
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Units</th>
+            <th>Expires In</th>
+            <th>Suggested Action</th>
+            <th>Transfer To</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Milk 1L</td>
+            <td>50</td>
+            <td><span class="badge red">3 days</span></td>
+            <td>Transfer</td>
+            <td>Delhi WH</td>
+            <td><button class="btn">Send</button></td>
+          </tr>
+          <tr>
+            <td>Chips</td>
+            <td>50</td>
+            <td><span class="badge red">5 days</span></td>
+            <td>Transfer</td>
+            <td>Mumbai WH</td>
+            <td><button class="btn">Send</button></td>
+          </tr>
+          <tr>
+            <td>Bread</td>
+            <td>10</td>
+            <td><span class="badge red">1 day</span></td>
+            <td>Transfer</td>
+            <td>Jaipur WH</td>
+            <td><button class="btn">Send</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

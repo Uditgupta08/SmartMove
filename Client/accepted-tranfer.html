@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accepted Transfers - SmartMove</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dashboard-body" onload="lucide.createIcons()">
+  <header class="dashboard-header">
+    <div class="logo-section">
+      <img src="walmart-logo.png" alt="Walmart Logo" class="logo-img" />
+      <h1> Accepted Transfers</h1>
+    </div>
+    <nav class="nav-buttons">
+      <button onclick="location.href='dashboard.html'"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+      <button onclick="location.href='transfer-requests.html'"><i data-lucide="mail"></i> Transfer Requests</button>
+      <button onclick="location.href='login.html'"><i data-lucide="log-out"></i> Logout</button>
+    </nav>
+  </header>
+
+  <main class="dashboard-main">
+    <h2> Products to be Dispatched</h2>
+
+    <div class="request-container">
+      <!-- Transfer Card 1 -->
+      <div class="request-card">
+        <p><strong>Product:</strong> Milk 1L</p>
+        <p><strong>Units:</strong> 50</p>
+        <p><strong>To Warehouse:</strong> Delhi WH</p>
+        <p><strong>Expires In:</strong> 3 days</p>
+        <button class="btn mark-dispatched">Mark as Dispatched</button>
+      </div>
+
+      <!-- Transfer Card 2 -->
+      <div class="request-card">
+        <p><strong>Product:</strong> Bread</p>
+        <p><strong>Units:</strong> 10</p>
+        <p><strong>To Warehouse:</strong> Jaipur WH</p>
+        <p><strong>Expires In:</strong> 1 day</p>
+        <button class="btn mark-dispatched"> Mark as Dispatched</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

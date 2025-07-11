@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transfer Requests - SmartMove</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dashboard-body" onload="lucide.createIcons()">
+  <header class="dashboard-header">
+    <div class="logo-section">
+      <img src="walmart-logo.png" alt="Walmart Logo" class="logo-img" />
+      <h1> Transfer Requests</h1>
+    </div>
+    <nav class="nav-buttons">
+      <button onclick="location.href='dashboard.html'"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+      <button onclick="location.href='accepted-transfers.html'"><i data-lucide="truck"></i> Accepted Transfers</button>
+      <button onclick="location.href='login.html'"><i data-lucide="log-out"></i> Logout</button>
+    </nav>
+  </header>
+
+  <main class="dashboard-main">
+    <h2> Incoming Product Transfers</h2>
+
+    <div class="request-container">
+      <!-- Transfer Card 1 -->
+      <div class="request-card">
+        <p><strong>Product:</strong> Milk 1L</p>
+        <p><strong>Units:</strong> 50</p>
+        <p><strong>From Warehouse:</strong> Mumbai WH</p>
+        <p><strong>Expires In:</strong> 3 days</p>
+        <p><strong>Reason:</strong> High demand forecast in your location</p>
+        <div class="request-actions">
+          <button class="btn approve"> Approve</button>
+          <button class="btn reject"></i> Reject</button>
+        </div>
+      </div>
+
+      <!-- Transfer Card 2 -->
+      <div class="request-card">
+        <p><strong>Product:</strong> Juice Pack</p>
+        <p><strong>Units:</strong> 50</p>
+        <p><strong>From Warehouse:</strong> Pune WH</p>
+        <p><strong>Expires In:</strong> 2 days</p>
+        <p><strong>Reason:</strong> Low demand at source, suitable for your area</p>
+        <div class="request-actions">
+          <button class="btn approve"> Approve</button>
+          <button class="btn reject"> Reject</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
