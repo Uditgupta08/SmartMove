@@ -3,14 +3,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Everyday Sans", sans-serif;
 }
 
 /* General Body */
 body {
   background-color: #f4f6f9;
-  color: #333;
-  font-family: "Segoe UI", sans-serif;
+  color: #001E60;
+  font-family: "Everyday Sans", sans-serif;
 }
 
 /* === Logo === */
@@ -67,27 +67,48 @@ body {
   background-color: #e1ecf7;
 }
 
-/* === Login Page === */
+/* === Login Page with Blurred Warehouse Background === */
 body.login-body {
-  background: linear-gradient(to right, #0047de, #005bb5);
+  background: url('bg-image.webp') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
+body.login-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4); /* Optional overlay */
+  z-index: 0;
+}
+
+/* === Login Container === */
 .login-container {
+  position: relative;
+  z-index: 1;
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
   width: 320px;
   text-align: center;
 }
 
+.login-container img {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
 .login-container h2 {
-  color: #0047de;
+  color: #001E60; /* Walmart Blue */
   margin-bottom: 0.5rem;
+  font-weight: 700;
 }
 
 .login-container .subtitle {
@@ -99,10 +120,12 @@ body.login-body {
 form label {
   display: block;
   text-align: left;
-  margin: 0.5rem 0 0.2rem;
+  margin: 1rem 0 0.3rem;
   font-weight: 600;
-  color: #333;
+  font-size: 0.95rem;
+  color: #001E60;
 }
+
 
 form input {
   width: 100%;
@@ -115,7 +138,7 @@ form input {
 form button {
   width: 100%;
   padding: 10px;
-  background-color: #0047de;
+  background-color: #0071ce;
   color: white;
   border: none;
   border-radius: 8px;
@@ -127,6 +150,7 @@ form button {
 form button:hover {
   background-color: #003cb3;
 }
+
 
 /* === Main Layout === */
 .dashboard-main {
@@ -152,20 +176,20 @@ form button:hover {
 
 .product-table th {
   background-color: #f0f6ff;
-  color: #333;
+  color: #001E60;
 }
 
 /* === Badges === */
 .badge {
   padding: 4px 10px;
   border-radius: 20px;
-  font-weight: bold;
+  
   font-size: 0.9rem;
-  color: white;
+  color: #001E60;
 }
 
 .badge.red {
-  background-color: #d9534f;
+  background-color: white;
 }
 
 /* === Buttons === */
@@ -209,7 +233,7 @@ form button:hover {
 
 .filters label {
   font-weight: 600;
-  color: #333;
+  color: #001E60;
 }
 
 .filters select {
@@ -237,7 +261,7 @@ form button:hover {
 
 .request-card p {
   margin: 0.5rem 0;
-  color: #333;
+  color: #001E60;
 }
 
 .request-actions {
@@ -257,3 +281,5 @@ form button:hover {
 .btn.mark-dispatched {
   background-color: #0071ce;
 }
+
+
