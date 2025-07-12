@@ -1,0 +1,166 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Incoming Requests – SmartMove</title>
+		<link rel="stylesheet" href="/css/style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body onload="lucide.createIcons()" class="dashboard-body">
+		<header class="dashboard-header">
+			<div class="logo-section">
+				<img src="/img/walmart-logo.png" alt="Logo" class="logo-img" />
+				<h1><i data-lucide="mail"></i> Sent Requests</h1>
+			</div>
+			<nav class="nav-buttons">
+				<button onclick="location.href='/walmart/suggestions/dashboard'">
+					<i data-lucide="layout-dashboard"></i> Dashboard
+				</button>
+				<button onclick="location.href='/walmart/transfer-requests/incoming'">
+					<i data-lucide="truck"></i> Incoming
+				</button>
+				<form
+					action="/walmart/auth/logout?_method=POST"
+					method="POST"
+					style="display: inline"
+				>
+					<button type="submit"><i data-lucide="log-out"></i> Logout</button>
+				</form>
+			</nav>
+		</header>
+
+		<main class="dashboard-main">
+			<h2>Your Sent Transfers</h2>
+
+			<% if (!outgoing || outgoing.length === 0) { %>
+			<p>No outgoing transfers found.</p>
+			<% } else { %>
+			<div class="request-container">
+				<% outgoing.forEach(tr => { const line = tr.items[0]; %>
+				<div class="request-card">
+					<p>
+						<strong>Product:</strong> <%= line.item.name %> (<%= line.item.sku
+						%>)
+					</p>
+					<p><strong>Units:</strong> <%= line.quantity %></p>
+					<p><strong>To:</strong> <%= tr.toStore.name %></p>
+					<p><strong>Expires In:</strong> <%= line.expiresIn %> days</p>
+					<p>
+						<strong>Status:</strong>
+						<span class="status"
+							><%= tr.status.replace(/_/g,' ').toUpperCase() %></span
+						>
+					</p>
+
+					<% if (tr.status === 'accepted') { %>
+					<form
+						action="/transfer-requests/<%= tr._id %>/out_for_delivery"
+						method="POST"
+					>
+						<button class="btn"><i data-lucide="truck"></i> Dispatch</button>
+					</form>
+					<% } else if (tr.status === 'out_for_delivery') { %>
+					<p><em>Awaiting receiver to mark received</em></p>
+					<% } else if (tr.status === 'received') { %>
+					<p><em>Completed</em></p>
+					<% } %>
+				</div>
+				<% }); %>
+			</div>
+			<% } %>
+		</main>
+	</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Outgoing Requests – SmartMove</title>
+		<link rel="stylesheet" href="/css/style.css" />
+		<script src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body onload="lucide.createIcons()" class="dashboard-body">
+		<header class="dashboard-header">
+			<div class="logo-section">
+				<img src="/img/walmart-logo.png" alt="Logo" class="logo-img" />
+				<h1><i data-lucide="mail"></i> Sent Requests</h1>
+			</div>
+			<nav class="nav-buttons">
+				<button onclick="location.href='/walmart/suggestions/dashboard'">
+					<i data-lucide="layout-dashboard"></i> Dashboard
+				</button>
+				<button onclick="location.href='/walmart/transfer-requests/incoming'">
+					<i data-lucide="truck"></i> Incoming
+				</button>
+				<form
+					action="/walmart/auth/logout?_method=POST"
+					method="POST"
+					style="display: inline"
+				>
+					<button type="submit"><i data-lucide="log-out"></i> Logout</button>
+				</form>
+			</nav>
+		</header>
+
+		<main class="dashboard-main">
+			<h2>Your Sent Transfers</h2>
+
+			<% if (!outgoing || outgoing.length === 0) { %>
+			<p>No outgoing transfers found.</p>
+			<% } else { %>
+			<div class="request-container">
+				<% outgoing.forEach(function(tr) { if (tr.items && tr.items.length > 0)
+				{ const line = tr.items[0]; %>
+				<div class="request-card">
+					<p>
+						<strong>Product:</strong>
+						<%= line.item ? line.item.name : 'Unknown Product' %> (<%= line.item
+						? line.item.sku : 'Unknown SKU' %>)
+					</p>
+					<p><strong>Units:</strong> <%= line.quantity || 0 %></p>
+					<p>
+						<strong>To:</strong>
+						<%= tr.toStore ? tr.toStore.name : 'Unknown Store' %>
+					</p>
+					<% if (line.expiresIn) { %>
+					<p><strong>Expires In:</strong> <%= line.expiresIn %> days</p>
+					<% } %>
+					<p>
+						<strong>Status:</strong>
+						<span class="status"
+							><%= tr.status.replace(/_/g,' ').toUpperCase() %></span
+						>
+					</p>
+
+					<% if (tr.status === 'accepted') { %>
+					<form
+						action="/walmart/transfer-requests/<%= tr._id %>/out_for_delivery"
+						method="POST"
+					>
+						<button class="btn"><i data-lucide="truck"></i> Dispatch</button>
+					</form>
+					<% } else if (tr.status === 'out_for_delivery') { %>
+					<p><em>Awaiting receiver to mark received</em></p>
+					<% } else if (tr.status === 'received') { %>
+					<p><em>Completed</em></p>
+					<% } %>
+				</div>
+				<% } else { %>
+				<div class="request-card">
+					<p><strong>Invalid Transfer Request</strong></p>
+					<p>This request has no items associated with it.</p>
+					<p>
+						<strong>Status:</strong>
+						<span class="status"
+							><%= tr.status.replace(/_/g,' ').toUpperCase() %></span
+						>
+					</p>
+				</div>
+				<% } }); %>
+			</div>
+			<% } %>
+		</main>
+	</body>
+</html>

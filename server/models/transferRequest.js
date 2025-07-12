@@ -17,6 +17,20 @@ const TransferRequestSchema = new mongoose.Schema(
 			ref: "StoreManager",
 			required: true,
 		},
+		items: [
+			{
+				item: {
+					type: mongoose.Schema.Types.ObjectId,
+					ref: "Item",
+					required: true,
+				},
+				quantity: {
+					type: Number,
+					required: true,
+					min: 1,
+				},
+			},
+		],
 		status: {
 			type: String,
 			enum: ["pending", "accepted", "rejected", "out_for_delivery", "received"],
@@ -32,4 +46,5 @@ const TransferRequestSchema = new mongoose.Schema(
 const TransferRequest =
 	mongoose.models.TransferRequest ||
 	mongoose.model("TransferRequest", TransferRequestSchema);
+
 module.exports = TransferRequest;

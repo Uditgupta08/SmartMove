@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartMove Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dashboard-body" onload="lucide.createIcons()">
+  <header class="dashboard-header">
+    <div class="logo-section">
+      <img src="/img/walmart-logo.png" alt="Walmart Logo" class="logo-img" />
+      <h1><i data-lucide="layout-dashboard"></i> SmartMove Dashboard</h1>
+    </div>
+    <nav class="nav-buttons">
+      <button onclick="location.href='/walmart/transfer-requests/incoming'">
+        <i data-lucide="mail"></i> Transfer Requests
+      </button>
+      <button onclick="location.href='/walmart/transfer-requests/outgoing'">
+        <i data-lucide="truck"></i> Sent Requests
+      </button>
+      <form action="/walmart/auth/logout?_method=POST" method="POST" style="display:inline">
+        <button type="submit">
+          <i data-lucide="log-out"></i> Logout
+        </button>
+      </form>
+    </nav>
+  </header>
+
+  <main class="dashboard-main">
+    <h2>Products Nearing Expiry – Warehouse Manager</h2>
+
+    <!-- <form method="GET" class="filters">
+      <label for="expirySort">Sort by Expiry:</label>
+      <select id="expirySort" name="sort" onchange="this.form.submit()">
+        <option value="" <%= !sort || sort !== 'expiry' ? 'selected' : '' %>>None</option>
+        <option value="expiry" <%= sort === 'expiry' ? 'selected' : '' %>>Sooner First</option>
+      </select>
+
+      <label for="profitSort">Sort by Net Profit:</label>
+      <select id="profitSort" name="sort" onchange="this.form.submit()">
+        <option value="" <%= !sort || sort !== 'profit' ? 'selected' : '' %>>None</option>
+        <option value="profit" <%= sort === 'profit' ? 'selected' : '' %>>High to Low</option>
+      </select>
+    </form> -->
+
+   <form method="GET" action="/walmart/suggestions/dashboard" class="filters">
+  <label for="sortSelect">Sort by:</label>
+  <select id="sortSelect" name="sort" onchange="this.form.submit()">
+    <option value=""    <%= !sort ? 'selected' : '' %>>None</option>
+    <option value="expiry" <%= sort==='expiry'? 'selected' : '' %>>Expiry</option>
+    <option value="profit" <%= sort==='profit'? 'selected' : '' %>>Profit</option>
+  </select>
+</form>
+
+
+    <table class="product-table" id="productTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Units</th>
+          <th>Expires In</th>
+          <th>Net Profit if Transferred</th>
+          <th>Loss if Not Transferred</th>
+          <th>Transfer To</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% suggestions.forEach(function(s) { %>
+          <tr>
+            <td><%= s.item.name %> (<%= s.item.sku %>)</td>
+            <td><%= s.quantity %></td>
+            <td><span class="badge <%= s.expiresIn <= 3 ? 'red' : 'yellow' %>"><%= s.expiresIn %> days</span></td>
+            <td>₹<%= s.netProfitIfTransferred %></td>
+            <td>₹<%= s.lossIfNotTransferred %></td>
+            <td><%= s.suggestedStore.name %></td>
+            <!-- <td>
+              <form action="/transfers" method="POST">
+                <input type="hidden" name="storeId" value="<%= s.suggestedStore.id %>" />
+                <input type="hidden" name="sku" value="<%= s.item.sku %>" />
+                <input type="hidden" name="quantity" value="<%= s.quantity %>" />
+                <button type="submit" class="btn">Send</button>
+              </form>
+            </td> -->
+            <td>
+  <form class="send-form" action="/walmart/transfer-requests" method="POST">
+    <input type="hidden" name="toStore"    value="<%= s.suggestedStore.id %>" />
+    <input type="hidden" name="itemId"     value="<%= s.item._id %>" />
+    <input type="hidden" name="quantity"   value="<%= s.quantity %>" />
+    <button type="submit" class="btn send-btn">
+      <i data-lucide="send"></i> Send
+    </button>
+  </form>
+</td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+  <script>
+    console.log("[inline] I’m in the page!");
+  </script>
+  <script src="/js/script.js"></script>
+</body>
+</html>
