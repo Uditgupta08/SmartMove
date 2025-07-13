@@ -69,7 +69,7 @@ body {
 
 /* === Login Page with Blurred Warehouse Background === */
 body.login-body {
-	background: url("../img/bg-image.jpg") no-repeat center center fixed;
+	background: url("bg-image.jpg") no-repeat center center fixed;
 	background-size: cover;
 	display: flex;
 	justify-content: center;
@@ -280,4 +280,9 @@ form button:hover {
 
 .btn.mark-dispatched {
 	background-color: #0071ce;
+	width: auto;
+}
+.btn.received {
+	background-color: #28a745;
+	width: auto;
 }

@@ -139,7 +139,7 @@
 						action="/walmart/transfer-requests/<%= tr._id %>/out_for_delivery"
 						method="POST"
 					>
-						<button class="btn"><i data-lucide="truck"></i> Dispatch</button>
+						<button class="btn mark-dispatched">Mark as Dispatched</button>
 					</form>
 					<% } else if (tr.status === 'out_for_delivery') { %>
 					<p><em>Awaiting receiver to mark received</em></p>

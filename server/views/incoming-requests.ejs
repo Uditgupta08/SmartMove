@@ -58,31 +58,30 @@
 					</p>
 
 					<% if (tr.status === 'pending') { %>
-					<form
-						action="/walmart/transfer-requests/<%= tr._id %>/accept"
-						method="POST"
-						style="display: inline"
-					>
-						<button class="btn approve">
-							<i data-lucide="check-circle"></i> Accept
-						</button>
-					</form>
-					<form
-						action="/walmart/transfer-requests/<%= tr._id %>/reject"
-						method="POST"
-						style="display: inline"
-					>
-						<button class="btn reject">
-							<i data-lucide="slash"></i> Reject
-						</button>
-					</form>
+					<div class="request-actions">
+						<form
+							action="/walmart/transfer-requests/<%= tr._id %>/accept"
+							method="POST"
+							style="display: inline"
+						>
+							<button class="btn approve">Accept</button>
+						</form>
+
+						<form
+							action="/walmart/transfer-requests/<%= tr._id %>/reject"
+							method="POST"
+							style="display: inline"
+						>
+							<button class="btn reject">Reject</button>
+						</form>
+					</div>
 					<% } else if (tr.status === 'out_for_delivery') { %>
 					<form
 						action="/walmart/transfer-requests/<%= tr._id %>/received"
 						method="POST"
 					>
 						<button class="btn received">
-							<i data-lucide="archive"></i> Mark Received
+							 Mark as Received
 						</button>
 					</form>
 					<% } else if (tr.status === 'accepted') { %>
